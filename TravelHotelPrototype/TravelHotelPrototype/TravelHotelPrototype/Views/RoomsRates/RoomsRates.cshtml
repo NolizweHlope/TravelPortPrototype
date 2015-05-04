@@ -1,0 +1,60 @@
+﻿@model TravelHotelPrototype.Models.RoomsRates
+@{
+    ViewBag.Title = "RoomsRates";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <label class="row"></label>
+    @foreach (var item in Model.Rates.HotelDetailItem)
+    {
+        if (item.Name.Equals("Accepted credit cards"))
+        {
+            <div class="row">
+                <div class="col-sm-3">@item.Name</div>
+                <div class="col-sm-3">
+                    @foreach (var text in item.Text)
+                    {
+                        <div>@item.Text</div>
+                    }
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <label>@item.Name</label>
+                <div>@item.Text</div>
+            </div>
+        }
+    }
+    <table class="panel panel-default table table-responsive table-hover col-lg-12">
+        <thead>
+            <tr class="panel-heading">
+                <th>ApproximateBase</th>
+                <th>Room Cancellation Policy</th>
+                <th>Rate Description</th>
+                <th>Room Type</th>
+                <th>Deposit Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @foreach (var Room in Model.RoomsRates.HotelRateDetail)
+                {
+                    <td>
+                        @Room.ApproximateBase
+                    </td>
+                    foreach (var des in Room.RoomRateDescription)
+                    {
+                        if (!(des.Name).Equals("Description") || !(des.Name).Equals("Capacity") || !(des.Name).Equals("Approximate Commission Amount") || !(des.Name).Equals("Supplier Terms and Conditions"))
+                        {
+                            <td>
+                                @des.Text
+                            </td>
+                        }
+                    }
+                }
+            </tr>
+        </tbody>
+    </table>
+</div>

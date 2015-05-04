@@ -1,0 +1,57 @@
+﻿@model TravelHotelPrototype.Models.SearchResultsModel
+@{
+    ViewBag.Title = "Results";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Partial("_searchCriteria", Model.Criteria)
+<div>
+    <table class="panel panel-default table table-responsive table-hover col-lg-12">
+        <thead>
+            <tr class="panel-heading">
+                <th></th>
+                <th>Name</th>
+                <th>Availability</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody class="panel-body">
+
+            @foreach (var hotel in Model.Results.HotelSearchResult)
+            {
+                <tr>
+                    @if (hotel.MediaItem != null)
+                    {
+                        <td class="col-md-2">
+                            <img src=@hotel.MediaItem.url />
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="col-md-2"></td>
+                    }
+                    <td class="col-md-5">
+                        @hotel.HotelProperty.Name
+                    </td>
+                    <td class="col-md-2">
+                        @hotel.HotelProperty.Availability
+                    </td>
+                    <td class="col-md-2">
+                        @if (hotel.RateInfo != null && hotel.RateInfo.Any())
+                        {
+                            @hotel.RateInfo.First().MinimumStayAmount
+                        }
+                        else
+                        {
+                            <div>0.00</div>
+                        }
+                    </td>
+                    <td class="col-md-2">
+                        @Html.ActionLink("Rooms & Rates", "RoomsRates", "RoomsRates", new { hostToken = Model.Results.HostToken.Value, checkInDate = Model.Criteria.checkInDate, checkOutDate = Model.Criteria.checkOutDate, TraceId = Model.Results.TraceId, Name = hotel.HotelProperty.Name, HotelChain = hotel.HotelProperty.HotelChain, HotelCode = hotel.HotelProperty.HotelCode }, null)
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+

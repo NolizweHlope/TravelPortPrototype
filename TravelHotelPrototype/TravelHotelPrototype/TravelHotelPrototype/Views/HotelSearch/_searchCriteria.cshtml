@@ -1,0 +1,161 @@
+﻿@model TravelHotelPrototype.Models.SearchCriteria
+@using (Html.BeginForm("Results", "HotelSearch", FormMethod.Post))
+{
+    <div class="row">
+        <div class="form-group">
+            <div class="col-lg-3">
+                <div>
+                    @Html.LabelFor(m => m.cityCode, new { @class = "control-label" })
+                </div>
+                <div>
+                    @Html.DropDownListFor(m => m.cityCode,
+                                          new SelectList(
+                                                          new List<Object>{
+                                                                            new { value = "JNB" , text = "Johannesburg"  },
+                                                                            new { value = "CPT" , text = "Cape Town" },
+                                                                            new { value = "DUR" , text = "Durban"}
+                                                                           },
+                                                          "value",
+                                                          "text",
+                                                          1),
+                                          new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div>
+                    @Html.LabelFor(m => m.checkInDate, new { @class = "control-label" })
+                </div>
+                <div>
+                    @Html.TextBoxFor(m => m.checkInDate, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div>
+                    @Html.LabelFor(m => m.checkOutDate, new { @class = "control-label" })
+                </div>
+                <div>
+                    @Html.TextBoxFor(m => m.checkOutDate, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class=" label">
+                </div>
+                <button name="search" type="submit" class="btn btn-lg btn-block btn-success">Search</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <h4 class="panel-heading">Suppliers</h4>
+        <div>
+            <div class="col-lg-2">
+                <div class="col-md-1">
+                    @Html.CheckBoxFor(m => m.AG)
+                </div>
+                <div class="col-md-9">
+                    @Html.Label("Agoda")
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="col-md-1">
+                    @Html.CheckBoxFor(m => m.EA)
+                </div>
+                <div class="col-md-9">
+                    @Html.Label("Easytobook")
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="col-md-1">
+                    @Html.CheckBoxFor(m => m.FB)
+                </div>
+                <div class="col-md-9">
+                    @Html.Label("FastBooking")
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="col-md-1">
+                    @Html.CheckBoxFor(m => m.HB)
+                </div>
+                <div class="col-md-9">
+                    @Html.Label("HostelsClub")
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="col-md-1">
+                    @Html.CheckBoxFor(m => m.HW)
+                </div>
+                <div class="col-md-9">
+                    @Html.Label("Hostelworld")
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="col-lg-2">
+                <div class="col-md-1">
+                    @Html.CheckBoxFor(m => m.LZ)
+                </div>
+                <div class="col-md-9">
+                    @Html.Label("Hotelzon")
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="col-md-1">
+                    @Html.CheckBoxFor(m => m.LB)
+                </div>
+                <div class="col-md-9">
+                    @Html.Label("Lowcostbeds")
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="col-md-1">
+                    @Html.CheckBoxFor(m => m.U4)
+                </div>
+                <div class="col-md-9">
+                    @Html.Label("Medhotels")
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="col-md-1">
+                    @Html.CheckBoxFor(m => m.MI)
+                </div>
+                <div class="col-md-9">
+                    @Html.Label("Miki Travel ")
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="col-md-1">
+                    @Html.CheckBoxFor(m => m.TO)
+                </div>
+                <div class="col-md-9">
+                    @Html.Label("Tourico")
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <h4 class="panel-heading">Providers</h4>
+        <div class="col-lg-4">
+            <div class="col-md-1">
+                @Html.RadioButtonFor(m => m.provider, "Both", new { @checked = "checked" })
+            </div>
+            <div class="col-md-11">
+                @Html.Label("GDS and TravelPort Rooms & More")
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="col-md-1">
+                @Html.RadioButtonFor(m => m.provider, "TRM")
+            </div>
+            <div class="col-md-11">
+                @Html.Label("TravelPort Rooms & More")
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class=" col-md-1">
+                @Html.RadioButtonFor(m => m.provider, "1G")
+            </div>
+            <div class="col-md-11">
+                @Html.Label("GDS")
+            </div>
+        </div>
+    </div>
+}
